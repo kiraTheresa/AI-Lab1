@@ -434,35 +434,41 @@ def drug_dealer_customs_cnf_tagged() -> Tuple[List[Clause], Set[int]]:
     return clauses, neg_indices
 
 
-def print_resolution(name: str, clauses: List[Clause], negated_goal_indices: Set[int]) -> None:
-    print(name)
-    print("Knowledge base clauses (CNF):")
-    for i, c in enumerate(clauses, 1):
-        tag = "  [NEGATED GOAL]" if i in negated_goal_indices else ""
-        print(f"  C{i}: {c}{tag}")
-    print()
+def print_resolution(name: str, clauses: List[Clause], negated_goal_indices: Set[int], log_path: str) -> None:
     proved, trace, chain = resolution(clauses, negated_goal_indices, log=True)
-    print("Resolution trace:")
-    for line in trace:
-        print(line)
-    print()
+    # 写入详细轨迹到文件
+    with open(log_path, "w", encoding="utf-8") as f:
+        f.write("Knowledge base clauses (CNF):\n")
+        for i, c in enumerate(clauses, 1):
+            tag = "  [NEGATED GOAL]" if i in negated_goal_indices else ""
+            f.write(f"  C{i}: {c}{tag}\n")
+        f.write("\nResolution trace:\n")
+        for line in trace:
+            f.write(line + "\n")
+        f.write("\n")
+        if proved:
+            f.write("Result: Refutation succeeded. Empty clause derived.\n")
+            f.write("Proof chain (backtrace):\n")
+            for ln in chain:
+                f.write(ln + "\n")
+        else:
+            f.write("Result: Refutation failed.\n")
+    # 控制台只输出摘要
+    step_count = sum(1 for ln in trace if ln.startswith("Step "))
+    used_negated_note = ""
     if proved:
-        print("Result: Refutation succeeded. Empty clause derived.")
-        print("Proof chain (backtrace):")
-        for ln in chain:
-            print(ln)
-    else:
-        print("Result: Refutation failed.")
+        if chain and chain[-1].startswith("[OK]"):
+            used_negated_note = "; used negated goal"
+        elif chain and chain[-1].startswith("[Warning]"):
+            used_negated_note = "; WARNING: negated goal not used"
+    print((name + " ").strip() + f"=> {'SUCCESS' if proved else 'FAIL'} | steps: {step_count}{used_negated_note} | log: {log_path}")
 
 
 def main() -> None:
-    print("== Improved Problem 1: Howling Hounds ==")
     clauses1, neg1 = howling_hounds_cnf_tagged()
-    print_resolution("", clauses1, neg1)
-    print("\n\n")
-    print("== Improved Problem 2: Drug dealer and customs official (Attempt) ==")
+    print_resolution("Problem 1", clauses1, neg1, log_path="trace_problem1.txt")
     clauses2, neg2 = drug_dealer_customs_cnf_tagged()
-    print_resolution("", clauses2, neg2)
+    print_resolution("Problem 2", clauses2, neg2, log_path="trace_problem2.txt")
 
 
 if __name__ == "__main__":

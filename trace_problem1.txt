@@ -1,0 +1,202 @@
+Knowledge base clauses (CNF):
+  C1: ¬HasHound(x) ∨ HasHowler(x)
+  C2: ¬HasCat(x) ∨ ¬HasMouse(x)
+  C3: ¬L(x) ∨ ¬HasHowler(x)
+  C4: HasCat(j) ∨ HasHound(j)
+  C5: L(j)  [NEGATED GOAL]
+  C6: HasMouse(j)  [NEGATED GOAL]
+
+Resolution trace:
+Step 1: resolve [C1:¬HasHound(x) ∨ HasHowler(x)] (lit 2) with [C3:¬L(x) ∨ ¬HasHowler(x)] (lit 2)
+         substitution: {x→x_2}
+         => ¬HasHound(x_2) ∨ ¬L(x_2)
+Step 2: resolve [C1:¬HasHound(x) ∨ HasHowler(x)] (lit 1) with [C4:HasCat(j) ∨ HasHound(j)] (lit 2)
+         substitution: {x→j}
+         => HasHowler(j) ∨ HasCat(j)
+Step 3: resolve [C2:¬HasCat(x) ∨ ¬HasMouse(x)] (lit 1) with [C4:HasCat(j) ∨ HasHound(j)] (lit 1)
+         substitution: {x→j}
+         => ¬HasMouse(j) ∨ HasHound(j)
+Step 4: resolve [C2:¬HasCat(x) ∨ ¬HasMouse(x)] (lit 2) with [C6:HasMouse(j)] (lit 1)
+         substitution: {x→j}
+         => ¬HasCat(j)
+Step 5: resolve [C3:¬L(x) ∨ ¬HasHowler(x)] (lit 1) with [C5:L(j)] (lit 1)
+         substitution: {x→j}
+         => ¬HasHowler(j)
+Step 6: resolve [C1:¬HasHound(x) ∨ HasHowler(x)] (lit 2) with [C3:¬L(x) ∨ ¬HasHowler(x)] (lit 2)
+         substitution: {x→x_17}
+         => ¬HasHound(x_17) ∨ ¬L(x_17)
+Step 7: resolve [C1:¬HasHound(x) ∨ HasHowler(x)] (lit 1) with [C4:HasCat(j) ∨ HasHound(j)] (lit 2)
+         substitution: {x→j}
+         => HasHowler(j) ∨ HasCat(j)
+Step 8: resolve [C1:¬HasHound(x) ∨ HasHowler(x)] (lit 1) with [C9:¬HasMouse(j) ∨ HasHound(j)] (lit 2)
+         substitution: {x→j}
+         => HasHowler(j) ∨ ¬HasMouse(j)
+Step 9: resolve [C1:¬HasHound(x) ∨ HasHowler(x)] (lit 2) with [C11:¬HasHowler(j)] (lit 1)
+         substitution: {x→j}
+         => ¬HasHound(j)
+Step 10: resolve [C2:¬HasCat(x) ∨ ¬HasMouse(x)] (lit 1) with [C4:HasCat(j) ∨ HasHound(j)] (lit 1)
+         substitution: {x→j}
+         => ¬HasMouse(j) ∨ HasHound(j)
+Step 11: resolve [C2:¬HasCat(x) ∨ ¬HasMouse(x)] (lit 2) with [C6:HasMouse(j)] (lit 1)
+         substitution: {x→j}
+         => ¬HasCat(j)
+Step 12: resolve [C2:¬HasCat(x) ∨ ¬HasMouse(x)] (lit 1) with [C8:HasHowler(j) ∨ HasCat(j)] (lit 2)
+         substitution: {x→j}
+         => ¬HasMouse(j) ∨ HasHowler(j)
+Step 13: resolve [C3:¬L(x) ∨ ¬HasHowler(x)] (lit 1) with [C5:L(j)] (lit 1)
+         substitution: {x→j}
+         => ¬HasHowler(j)
+Step 14: resolve [C3:¬L(x) ∨ ¬HasHowler(x)] (lit 2) with [C8:HasHowler(j) ∨ HasCat(j)] (lit 1)
+         substitution: {x→j}
+         => ¬L(j) ∨ HasCat(j)
+Step 15: resolve [C4:HasCat(j) ∨ HasHound(j)] (lit 2) with [C7:¬HasHound(x_2) ∨ ¬L(x_2)] (lit 1)
+         substitution: {x_2_45→j}
+         => HasCat(j) ∨ ¬L(j)
+Step 16: resolve [C4:HasCat(j) ∨ HasHound(j)] (lit 1) with [C10:¬HasCat(j)] (lit 1)
+         substitution: {}
+         => HasHound(j)
+Step 17: resolve [C5:L(j)] (lit 1) with [C7:¬HasHound(x_2) ∨ ¬L(x_2)] (lit 2)
+         substitution: {x_2_51→j}
+         => ¬HasHound(j)
+Step 18: resolve [C6:HasMouse(j)] (lit 1) with [C9:¬HasMouse(j) ∨ HasHound(j)] (lit 1)
+         substitution: {}
+         => HasHound(j)
+Step 19: resolve [C7:¬HasHound(x_2) ∨ ¬L(x_2)] (lit 1) with [C9:¬HasMouse(j) ∨ HasHound(j)] (lit 2)
+         substitution: {x_2→j}
+         => ¬L(j) ∨ ¬HasMouse(j)
+Step 20: resolve [C8:HasHowler(j) ∨ HasCat(j)] (lit 2) with [C10:¬HasCat(j)] (lit 1)
+         substitution: {}
+         => HasHowler(j)
+Step 21: resolve [C8:HasHowler(j) ∨ HasCat(j)] (lit 1) with [C11:¬HasHowler(j)] (lit 1)
+         substitution: {}
+         => HasCat(j)
+Step 22: resolve [C1:¬HasHound(x) ∨ HasHowler(x)] (lit 2) with [C3:¬L(x) ∨ ¬HasHowler(x)] (lit 2)
+         substitution: {x→x_72}
+         => ¬HasHound(x_72) ∨ ¬L(x_72)
+Step 23: resolve [C1:¬HasHound(x) ∨ HasHowler(x)] (lit 1) with [C4:HasCat(j) ∨ HasHound(j)] (lit 2)
+         substitution: {x→j}
+         => HasHowler(j) ∨ HasCat(j)
+Step 24: resolve [C1:¬HasHound(x) ∨ HasHowler(x)] (lit 1) with [C9:¬HasMouse(j) ∨ HasHound(j)] (lit 2)
+         substitution: {x→j}
+         => HasHowler(j) ∨ ¬HasMouse(j)
+Step 25: resolve [C1:¬HasHound(x) ∨ HasHowler(x)] (lit 2) with [C11:¬HasHowler(j)] (lit 1)
+         substitution: {x→j}
+         => ¬HasHound(j)
+Step 26: resolve [C1:¬HasHound(x) ∨ HasHowler(x)] (lit 1) with [C18:HasHound(j)] (lit 1)
+         substitution: {x→j}
+         => HasHowler(j)
+Step 27: resolve [C2:¬HasCat(x) ∨ ¬HasMouse(x)] (lit 1) with [C4:HasCat(j) ∨ HasHound(j)] (lit 1)
+         substitution: {x→j}
+         => ¬HasMouse(j) ∨ HasHound(j)
+Step 28: resolve [C2:¬HasCat(x) ∨ ¬HasMouse(x)] (lit 2) with [C6:HasMouse(j)] (lit 1)
+         substitution: {x→j}
+         => ¬HasCat(j)
+Step 29: resolve [C2:¬HasCat(x) ∨ ¬HasMouse(x)] (lit 1) with [C8:HasHowler(j) ∨ HasCat(j)] (lit 2)
+         substitution: {x→j}
+         => ¬HasMouse(j) ∨ HasHowler(j)
+Step 30: resolve [C2:¬HasCat(x) ∨ ¬HasMouse(x)] (lit 1) with [C16:¬L(j) ∨ HasCat(j)] (lit 2)
+         substitution: {x→j}
+         => ¬HasMouse(j) ∨ ¬L(j)
+Step 31: resolve [C2:¬HasCat(x) ∨ ¬HasMouse(x)] (lit 1) with [C17:HasCat(j) ∨ ¬L(j)] (lit 1)
+         substitution: {x→j}
+         => ¬HasMouse(j) ∨ ¬L(j)
+Step 32: resolve [C2:¬HasCat(x) ∨ ¬HasMouse(x)] (lit 1) with [C21:HasCat(j)] (lit 1)
+         substitution: {x→j}
+         => ¬HasMouse(j)
+Step 33: resolve [C3:¬L(x) ∨ ¬HasHowler(x)] (lit 1) with [C5:L(j)] (lit 1)
+         substitution: {x→j}
+         => ¬HasHowler(j)
+Step 34: resolve [C3:¬L(x) ∨ ¬HasHowler(x)] (lit 2) with [C8:HasHowler(j) ∨ HasCat(j)] (lit 1)
+         substitution: {x→j}
+         => ¬L(j) ∨ HasCat(j)
+Step 35: resolve [C3:¬L(x) ∨ ¬HasHowler(x)] (lit 2) with [C13:HasHowler(j) ∨ ¬HasMouse(j)] (lit 1)
+         substitution: {x→j}
+         => ¬L(j) ∨ ¬HasMouse(j)
+Step 36: resolve [C3:¬L(x) ∨ ¬HasHowler(x)] (lit 2) with [C15:¬HasMouse(j) ∨ HasHowler(j)] (lit 2)
+         substitution: {x→j}
+         => ¬L(j) ∨ ¬HasMouse(j)
+Step 37: resolve [C3:¬L(x) ∨ ¬HasHowler(x)] (lit 2) with [C20:HasHowler(j)] (lit 1)
+         substitution: {x→j}
+         => ¬L(j)
+Step 38: resolve [C4:HasCat(j) ∨ HasHound(j)] (lit 2) with [C7:¬HasHound(x_2) ∨ ¬L(x_2)] (lit 1)
+         substitution: {x_2_130→j}
+         => HasCat(j) ∨ ¬L(j)
+Step 39: resolve [C4:HasCat(j) ∨ HasHound(j)] (lit 1) with [C10:¬HasCat(j)] (lit 1)
+         substitution: {}
+         => HasHound(j)
+Step 40: resolve [C4:HasCat(j) ∨ HasHound(j)] (lit 2) with [C12:¬HasHound(x_17) ∨ ¬L(x_17)] (lit 1)
+         substitution: {x_17_135→j}
+         => HasCat(j) ∨ ¬L(j)
+Step 41: resolve [C4:HasCat(j) ∨ HasHound(j)] (lit 2) with [C14:¬HasHound(j)] (lit 1)
+         substitution: {}
+         => HasCat(j)
+Step 42: resolve [C5:L(j)] (lit 1) with [C7:¬HasHound(x_2) ∨ ¬L(x_2)] (lit 2)
+         substitution: {x_2_146→j}
+         => ¬HasHound(j)
+Step 43: resolve [C5:L(j)] (lit 1) with [C12:¬HasHound(x_17) ∨ ¬L(x_17)] (lit 2)
+         substitution: {x_17_151→j}
+         => ¬HasHound(j)
+Step 44: resolve [C5:L(j)] (lit 1) with [C16:¬L(j) ∨ HasCat(j)] (lit 1)
+         substitution: {}
+         => HasCat(j)
+Step 45: resolve [C5:L(j)] (lit 1) with [C17:HasCat(j) ∨ ¬L(j)] (lit 2)
+         substitution: {}
+         => HasCat(j)
+Step 46: resolve [C5:L(j)] (lit 1) with [C19:¬L(j) ∨ ¬HasMouse(j)] (lit 1)
+         substitution: {}
+         => ¬HasMouse(j)
+Step 47: resolve [C6:HasMouse(j)] (lit 1) with [C9:¬HasMouse(j) ∨ HasHound(j)] (lit 1)
+         substitution: {}
+         => HasHound(j)
+Step 48: resolve [C6:HasMouse(j)] (lit 1) with [C13:HasHowler(j) ∨ ¬HasMouse(j)] (lit 2)
+         substitution: {}
+         => HasHowler(j)
+Step 49: resolve [C6:HasMouse(j)] (lit 1) with [C15:¬HasMouse(j) ∨ HasHowler(j)] (lit 1)
+         substitution: {}
+         => HasHowler(j)
+Step 50: resolve [C6:HasMouse(j)] (lit 1) with [C19:¬L(j) ∨ ¬HasMouse(j)] (lit 2)
+         substitution: {}
+         => ¬L(j)
+Step 51: resolve [C7:¬HasHound(x_2) ∨ ¬L(x_2)] (lit 1) with [C9:¬HasMouse(j) ∨ HasHound(j)] (lit 2)
+         substitution: {x_2→j}
+         => ¬L(j) ∨ ¬HasMouse(j)
+Step 52: resolve [C7:¬HasHound(x_2) ∨ ¬L(x_2)] (lit 1) with [C18:HasHound(j)] (lit 1)
+         substitution: {x_2→j}
+         => ¬L(j)
+Step 53: resolve [C8:HasHowler(j) ∨ HasCat(j)] (lit 2) with [C10:¬HasCat(j)] (lit 1)
+         substitution: {}
+         => HasHowler(j)
+Step 54: resolve [C8:HasHowler(j) ∨ HasCat(j)] (lit 1) with [C11:¬HasHowler(j)] (lit 1)
+         substitution: {}
+         => HasCat(j)
+Step 55: resolve [C9:¬HasMouse(j) ∨ HasHound(j)] (lit 2) with [C12:¬HasHound(x_17) ∨ ¬L(x_17)] (lit 1)
+         substitution: {x_17_205→j}
+         => ¬HasMouse(j) ∨ ¬L(j)
+Step 56: resolve [C9:¬HasMouse(j) ∨ HasHound(j)] (lit 2) with [C14:¬HasHound(j)] (lit 1)
+         substitution: {}
+         => ¬HasMouse(j)
+Step 57: resolve [C10:¬HasCat(j)] (lit 1) with [C16:¬L(j) ∨ HasCat(j)] (lit 2)
+         substitution: {}
+         => ¬L(j)
+Step 58: resolve [C10:¬HasCat(j)] (lit 1) with [C17:HasCat(j) ∨ ¬L(j)] (lit 1)
+         substitution: {}
+         => ¬L(j)
+Step 59: resolve [C10:¬HasCat(j)] (lit 1) with [C21:HasCat(j)] (lit 1)
+         substitution: {}
+         => ⊥
+Derived empty clause ⊥. Refutation complete.
+
+Result: Refutation succeeded. Empty clause derived.
+Proof chain (backtrace):
+C2: ¬HasCat(x) ∨ ¬HasMouse(x)
+C6: HasMouse(j)  [NEGATED GOAL]
+C10: resolved from C2(lit 2) & C6(lit 1) with {x→j} => ¬HasCat(j)
+C1: ¬HasHound(x) ∨ HasHowler(x)
+C4: HasCat(j) ∨ HasHound(j)
+C8: resolved from C1(lit 1) & C4(lit 2) with {x→j} => HasHowler(j) ∨ HasCat(j)
+C3: ¬L(x) ∨ ¬HasHowler(x)
+C5: L(j)  [NEGATED GOAL]
+C11: resolved from C3(lit 1) & C5(lit 1) with {x→j} => ¬HasHowler(j)
+C21: resolved from C8(lit 1) & C11(lit 1) with {} => HasCat(j)
+C26: resolved from C10(lit 1) & C21(lit 1) with {} => ⊥
+[OK] Empty clause uses at least one negated goal clause.
